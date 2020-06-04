@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="myjavascript.js"></script>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="shortcut icon" href="img/logo.jpg">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<title>Admin</title>
+	
+	<style>
+		h1 {
+			margin-top: 10%;
+			margin-left: 10%;
+			margin-bottom: 10%;
+			height: 70%;
+			color: darkorange;
+			padding: 10px;
+			
+		}
+	</style>
+	
+</head>
+
+<body>
+
+	<!--End page heading-->
+
+	<!--Start topNav Bar-->
+	<div id="nav-placeholder">
+	</div>
+	<!-- Jquery to pull the navbar into every file -->
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script>
+	  $.get("adminnavbar.html", function(data){
+		 $("#nav-placeholder").replaceWith(data);
+	  });
+	</script>
+	<!--End topNavBar-->
+
+	<h1 style=>Welcome to Project Sara..</h1>
+
+</body>
+
+</html>

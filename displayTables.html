@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="myjavascript.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="shortcut icon" href="img/logo.jpg">
+    <title>History</title>
+</head>
+
+<body>
+
+    <!--Start topNav Bar-->
+    <div id="nav-placeholder">
+    </div>
+    <!-- Jquery to pull the navbar into every file -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script>
+        $.get("adminnavbar.html", function(data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+    </script>
+    <!--End topNavBar-->
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+
+	<div class="search_div">
+		<div class="search_head">
+			<button id="mySearch" onclick = "getSearch()">Search History</button>
+			<button id="myPage" onclick = "getPage()">Page History</button>
+		</div>
+	</div>
+	
+	<div class = "search-div">
+		<div class = "tables">
+			<table class="dataTable" id="resultsDisplay"></table>
+		</div>
+	</div>
+	
+    
+    
+    <script>
+        function getSearch() {
+            $.getJSON("getSearch.php", function(data) {
+                var html = "<thead><tr>" +
+                    "<th>TERMS</th>" +
+                    "<th>RESULTS COUNT</th>" +
+                    "<th>SEARCH DATEs</th>" +
+                    "<th>TIMETOSEARCH</th>" +
+                    "</tr></thead><tbody>";
+                for (var i = 0; i < data.length; i++) {
+                    html += "<tr>";
+                    html += "<td width=100px>" + data[i].terms + "</td>";
+                    html += "<td>" + data[i].count + "</td>";
+                    html += "<td>" + data[i].search_date + "</td>";
+                    html += "<td>" + data[i].timeToSearch + "</td>";
+                    html += "</tr>";
+                }
+                html += "</tbody>";
+                document.getElementById("resultsDisplay").innerHTML = html;
+                //('#resultsDisplay').DataTable();
+                
+            });
+
+        }
+
+        function getPage() {
+            $.getJSON("getPage.php", function(data) {
+                var html = "<thead><tr>" +
+                    "<th>URL</th>" +
+                    "<th>TITLE</th>" +
+                    "<th>DESCRIPTION</th>" +
+                    "<th>LASTINDEXED</th>" +
+                    "<th>TIMETOINDEX</th>" +
+                    "</tr></thead><tbody>";
+                for (var i = 0; i < data.length; i++) {
+                    html += "<tr>";
+                    html += "<td>" + data[i].url + "</td>";
+                    html += "<td>" + data[i].title + "</td>";
+                    html += "<td>" + data[i].description + "</td>";
+                    html += "<td>" + data[i].lastIndexed + "</td>";
+                    html += "<td>" + data[i].timeToIndex + "</td>";
+                    html += "</tr>";
+                }
+                html += "</tbody>";
+                document.getElementById("resultsDisplay").innerHTML = html;
+               // $('#resultsDisplay').DataTable();
+                
+            });
+        }
+
+        function hideButtons() {
+            var s = document.getElementById("mySearch");
+            s.style.display = "none";
+            var p = document.getElementById("myPage");
+            p.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

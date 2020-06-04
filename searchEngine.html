@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript" src="myjavascript.js"></script>
+		<link rel="stylesheet" href="styles.css">
+		<link rel="shortcut icon" href="img/logo.jpg">
+		<title>SARA</title>
+	</head>
+<body>
+
+
+	<!--Start topNav Bar-->
+	<div id="nav-placeholder">
+	</div>
+	<!-- Jquery to pull the navbar into every file -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script>
+	  $.get("adminnavbar.html", function(data){
+		 $("#nav-placeholder").replaceWith(data);
+	  });
+	</script>
+	<!--End topNavBar-->
+
+
+	<div class = "navigator">
+		
+		<form action="searchSARA.php" class="searchinfo" method="POST">
+			
+			<div class="search_div">
+			
+			
+				<div class="search_options">
+					
+					<h5>Options:</h5>
+					<input type="checkbox" id= "case" name="case" >
+					<label>Case Sensitive</label>
+					
+					<h5>Search position:</h5>
+					<input type="radio" id= "exactt" name="exact" value="exact" checked>
+					<label>Exact Match</label>
+					<input type="radio" id= "exact" name="exact" value="partial">
+					<label>Partial Match</label>
+					
+					<h5>Search Type:</h5>
+					<input type="radio" name="searchtype" value="AND" checked>
+					<label>AND</label>
+					<input type="radio" name="searchtype" value="OR">
+					<label>OR</label>
+					<input type="checkbox" name="limit" value="true" checked>
+					<label>ONLY GET TOP 10</label>
+						
+					
+				</div>
+			</div>
+			
+			<div class="search_div">
+				<div class="search_head">
+					<img src="img/logo.jpg" id="G_image" width="170px">
+					<input id="search_text" type="text" placeholder="Search..." name="q">
+					<button id="search_button"><i class="fa fa-search"></i></button>
+				</div>
+			</div>
+		
+		</form>
+	</div>
+</body>
+
+</html>
